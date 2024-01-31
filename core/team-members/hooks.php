@@ -15,8 +15,15 @@ class Hooks{
 	public function init() {
 		$this->cpt      = new Cpt();
 		$this->add_single_page_template();
+		add_action( 'pre_get_posts' ,array($this,'query_post_type_team_member'), 1, 1 );
     }
-
+	public function query_post_type_team_member( $query ) {
+		if ( ! is_admin() && is_post_type_archive( 'team_member' ) && $query->is_main_query() )
+		{
+			$query->set( 'posts_per_page', 4 ); 
+		}
+	}
+	
 	/**
 	 * Add single and archive  page
 	 */

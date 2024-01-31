@@ -9,13 +9,13 @@ class Member_Single_Post {
     use \Markutos\Utils\Singleton;
 
     function __construct() {
-        add_action( 'single_template', [$this, 'event_single_page'] );
+        add_action( 'single_template', [$this, 'member_single_page'] );
         add_filter( 'archive_template', [$this, 'member_archive_template'] );
     }
 
     public function member_archive_template( $template ) {
         if ( is_post_type_archive( 'team_member' ) ) {
-            $default_file = \Markutos::plugin_dir() . 'core/team-members/views/team-archive-page.php';
+            $default_file = \Markutos::core_dir() . 'team-members/views/team-archive-page.php';
             if ( file_exists( $default_file ) ) {
                 $template = $default_file;
             }
@@ -24,10 +24,10 @@ class Member_Single_Post {
         return $template;
     }
 
-    public function event_single_page( $single ) {
+    public function member_single_page( $single ) {
         global $post;
         if ( $post->post_type == 'team_member' &&  is_singular( 'team_member' ) ) {
-            $default_file = \Markutos::plugin_dir() . 'core/event/views/event-single-page.php';
+            $default_file = \Markutos::core_dir() . 'team-members/views/team-single.php';
             if ( file_exists( $default_file ) ) {
                 $single = $default_file;
             }
