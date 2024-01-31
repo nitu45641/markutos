@@ -43,7 +43,7 @@ class Shortcodes {
 			shortcode_atts(
 				array(
 					'limit'       		=> '2',
-					'position'          => 'center',
+					'position'          => 'top',
 					'see_all'           => 'yes',
 				), $atts )
 		);
