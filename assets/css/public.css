@@ -1,0 +1,10 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 10px;
+    align-items: center;
+    padding: 7px 0;
+}
+.see_all{
+    text-align: center;
+}

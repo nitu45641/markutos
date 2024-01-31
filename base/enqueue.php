@@ -121,16 +121,8 @@ class Enqueue {
      */
     public function frontend_get_styles() {
         $enqueue =  array(
-			'filter-public-free' => array(
+			'dummy-public-free' => array(
                 'src'     => \Markutos::assets_url() . 'css/public.css',
-                'version' => \Markutos::get_version(),
-            ),
-			'filter-plus-public' => array(
-                'src'     => \Markutos::assets_url() . 'css/search-filter.css',
-                'version' => \Markutos::get_version(),
-            ),
-			'jquery.range-min' => array(
-                'src'     => \Markutos::assets_url() . 'css/jquery.range.css',
                 'version' => \Markutos::get_version(),
             )
         );

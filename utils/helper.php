@@ -284,4 +284,24 @@ class Helper {
 		return $admin_pages;
 	}
 
+	/**
+	 * Admin pages array
+	 *
+	 * @return array
+	 */
+	public static function manage_teams( $args= array() ) {
+		extract($args);
+		$get_members = get_posts( 
+			array(
+				'post_type' 			=> $post_type,
+				'post_status'           => $post_status,
+				'offset'                => $offset,
+				'posts_per_page'        => $limit,
+				'paginate'              => true
+			)
+		);
+		error_log(json_encode($get_members));
+		return $get_members;
+	}
+
 }

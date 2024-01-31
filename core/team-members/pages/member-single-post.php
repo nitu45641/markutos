@@ -10,13 +10,12 @@ class Member_Single_Post {
 
     function __construct() {
         add_action( 'single_template', [$this, 'event_single_page'] );
-        add_filter( 'archive_template', [$this, 'event_archive_template'] );
+        add_filter( 'archive_template', [$this, 'member_archive_template'] );
     }
 
-    public function event_archive_template( $template ) {
-
+    public function member_archive_template( $template ) {
         if ( is_post_type_archive( 'team_member' ) ) {
-            $default_file = \Markutos::plugin_dir() . 'core/team-members/views/event-archive-page.php';
+            $default_file = \Markutos::plugin_dir() . 'core/team-members/views/team-archive-page.php';
             if ( file_exists( $default_file ) ) {
                 $template = $default_file;
             }

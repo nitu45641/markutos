@@ -1,6 +1,7 @@
 <?php
 
 namespace Markutos\Core\TeamMembers;
+use Markutos\Core\TeamMembers\Pages\Member_Single_Post;
 use Markutos\Utils\Singleton;
 
 defined( 'ABSPATH' ) || exit;
@@ -13,7 +14,15 @@ class Hooks{
 	public $actionPost_type = ['team_member'];
 	public function init() {
 		$this->cpt      = new Cpt();
+		$this->add_single_page_template();
     }
+
+	/**
+	 * Add single and archive  page
+	 */
+	public function add_single_page_template() {
+		new Member_Single_Post();
+	}
 
     /**
 	 * get user module url
