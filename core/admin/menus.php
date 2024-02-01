@@ -77,6 +77,24 @@ class Menus {
 	 */
 	public function sub_menu_pages() {
 		$sub_pages  = array(
+			array(
+				"parent_slug" => 'dummy-plugin',
+				"page_title"  => esc_html__('Member Type','markutos'),
+				"menu_title"  => esc_html__('Member Type','markutos'),
+				"capability"  => 'read',
+				"menu_slug"   => 'edit-tags.php?taxonomy=member_type&post_type=team_member',
+				"cb_function" => null,
+				"position"    => 11
+			),
+			array(
+				"parent_slug" => 'dummy-plugin',
+				"page_title"  => esc_html__('Settings','markutos'),
+				"menu_title"  => esc_html__('Settings','markutos'),
+				"capability"  => 'read',
+				"menu_slug"   => 'settings',
+				"cb_function" => array($this,'settings_view'),
+				"position"    => 12
+			)
 		);
 
 		return $sub_pages;
@@ -87,11 +105,7 @@ class Menus {
      *
      * @return void
      */
-    public function filter_plus_view() {
-	?>
-        <div class="wrap">
-			<h1><?php esc_html_e('Welcome to our Team','markutos') ;?></h1>
-		</div>
-	<?php
+    public function settings_view() {
+		include_once \Markutos::core_dir() . "admin/settings.php"; 
     }
 }

@@ -11,12 +11,36 @@ class Hooks{
     use Singleton;
 
 	public $cpt;
-	public $actionPost_type = ['team_member'];
+	public $member_type;
+
 	public function init() {
-		$this->cpt      = new Cpt();
+		$this->cpt      		= new Cpt();
+		$this->member_type	 	= new MemberType();
 		$this->add_single_page_template();
 		add_action( 'pre_get_posts' ,array($this,'query_post_type_team_member'), 1, 1 );
+		// make admin menu open if custom taxonomy is selected.
+		add_action( 'parent_file', array( $this, 'keep_taxonomy_menu_open' ) );
     }
+
+	/**
+	 * Open taxonomy inside
+	 *
+	 * @param string $parent_file Parent File.
+	 *
+	 * @return string
+	 */
+	public function keep_taxonomy_menu_open( $parent_file ) {
+		global $current_screen;
+		$taxonomy            = $current_screen->taxonomy;
+		$eligible_taxonomies = array( 'member_type' );
+
+		if ( in_array( $taxonomy, $eligible_taxonomies ) ) {
+			$parent_file = 'team_member';
+		}
+
+		return $parent_file;
+	}
+
 	public function query_post_type_team_member( $query ) {
 		if ( ! is_admin() && is_post_type_archive( 'team_member' ) && $query->is_main_query() )
 		{
