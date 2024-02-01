@@ -279,10 +279,35 @@ class Helper {
 	 */
 	public static function admin_unique_id( ) {
 		$admin_pages =  array(
+			'manage-team_page_settings'
 		);
 
 		return $admin_pages;
 	}
+
+	/**
+	 * Return Settings array
+	 */
+	public static function get_settings_key() {
+		return array(
+			'team_member_name' => '',
+			'team_slug' => ''
+		);
+	}
+
+	public static function get_member_options() {
+		$settings 				= array();
+		$get_settings 			= get_option('manage_members_settings', true );
+		$settings_key 			= self::get_settings_key();
+
+		foreach ($settings_key as $key => $value) {
+			$settings[$key] = !empty($get_settings[$key]) ? $get_settings[$key] : $value;
+		}
+		
+		return $settings;
+	}
+
+
 
 	/**
 	 * Admin pages array

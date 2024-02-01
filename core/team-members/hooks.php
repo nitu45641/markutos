@@ -18,9 +18,13 @@ class Hooks{
 		$this->member_type	 	= new MemberType();
 		$this->add_single_page_template();
 		add_action( 'pre_get_posts' ,array($this,'query_post_type_team_member'), 1, 1 );
-		// make admin menu open if custom taxonomy is selected.
 		add_action( 'parent_file', array( $this, 'keep_taxonomy_menu_open' ) );
+		add_action( 'admin_post_nopriv_team_member_settings', array($this,'save_settings') );
+		add_action( 'admin_post_team_member_settings', array($this,'save_settings') );
     }
+	public function save_settings() {
+		\Markutos\Base\Action::instance()->store( -1, $_POST );
+	}
 
 	/**
 	 * Open taxonomy inside

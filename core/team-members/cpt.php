@@ -91,7 +91,7 @@ class Cpt extends \Markutos\Base\Cpt {
     }
 
     private function user_modifiable_option() {
-        $settings_options   = get_option( 'manage_members_options' );
+        $settings_options   = get_option( 'manage_members_settings' );
         $options = [
             'team_singular_name'        => esc_html__( 'Team Member', 'markutos' ),
             'team_member_archive'       => esc_html__( 'Team Member Archive', 'markutos' ),
@@ -102,6 +102,10 @@ class Cpt extends \Markutos\Base\Cpt {
 
         if ( !empty( $settings_options['team_slug'] ) ) {
             $options['team_slug'] = str_replace( ' ', '_' , $settings_options['team_slug'] );
+        }
+        if ( !empty( $settings_options['team_member_name'] ) ) {
+            $options['team_member_name'] = str_replace( ' ', '_' , $settings_options['team_member_name'] );
+            $options['team_members_all'] = str_replace( ' ', '_' , $settings_options['team_member_name'] );
         }
 
         return $options;
