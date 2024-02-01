@@ -22,7 +22,7 @@ class Cpt extends \Markutos\Base\Cpt {
         $options = $this->user_modifiable_option();
 
         $labels  = [
-            'name'                  => esc_html_x( 'Team Members', 'Post Type General Name', 'markutos' ),
+            'name'                  => $options['team_singular_name'],
             'singular_name'         => apply_filters( 'team_member_singular_name', $options['team_singular_name'] ),
             'menu_name'             => esc_html__( 'Team Member', 'markutos' ),
             'name_admin_bar'        => esc_html__( 'Team Member', 'markutos' ),
@@ -104,8 +104,8 @@ class Cpt extends \Markutos\Base\Cpt {
             $options['team_slug'] = str_replace( ' ', '_' , $settings_options['team_slug'] );
         }
         if ( !empty( $settings_options['team_member_name'] ) ) {
-            $options['team_member_name'] = str_replace( ' ', '_' , $settings_options['team_member_name'] );
-            $options['team_members_all'] = str_replace( ' ', '_' , $settings_options['team_member_name'] );
+            $options['team_singular_name'] = $settings_options['team_member_name'];
+            $options['team_members_all']   = $settings_options['team_member_name'];
         }
 
         return $options;
